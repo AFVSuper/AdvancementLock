@@ -1,0 +1,50 @@
+/gamemode survival
+/gamemode creative
+/difficulty peaceful
+/gamemode survival
+/clear
+/give AFVSuper minecraft:iron_chestplate
+/clear
+/give AFVSuper minecraft:iron_chestplate
+/difficulty peaceful
+/give AFVSuper minecraft:iron_chestplate
+/give AFVSuper minecraft:iron_boots
+/attribute AFVSuper minecraft:max_health get 1
+/attribute AFVSuper minecraft:max_health modifier value get advancementlock:fca47f5d-b030-474a-880f-af682755c7e3
+/mod-debug adcount
+/difficulty
+/gamemode creative
+/gamemode survival
+/data get entity AFVSuper Inventory
+/give AFVSuper minecraft:diamond
+/give AFVSuper stick
+/give AFVSuper minecraft:iron_nugget
+/give AFVSuper minecraft:acacia_boat
+/item replace entity AFVSuper hotbar.3 with minecraft:acacia_boat
+/give AFVSuper minecraft:iron_nugget
+/gamemode survival
+/data get entity AFVSuper Inventory
+/clear
+/give AFVSuper minecraft:iron_nugget
+/data get entity AFVSuper Inventory
+/give AFVSuper minecraft:iron_nugget
+/data get entity AFVSuper Inventory
+/clear AFVSuper minecraft:acacia_boat
+/give AFVSuper minecraft:acacia_boat
+/data get entity AFVSuper Inventory
+/clear AFVSuper minecraft:acacia_boat
+/give AFVSuper minecraft:acacia_boat
+/data get entity AFVSuper Inventory
+/advancement grant AFVSuper from minecraft:story/root
+/gamemode creative
+/gamemode survival
+/give AFVSuper minecraft:bundle
+/data get entity AFVSuper Inventory
+/mod-debug adcount
+/advancement grant AFVSuper from minecraft:adventure/root
+/advancement grant AFVSuper from minecraft:nether/root
+/advancement grant AFVSuper from minecraft:husbandry/root
+/advancement grant AFVSuper from minecraft:end/root
+/advancement revoke AFVSuper everything
+/kill AFVSuper
+/give AFVSuper minecraft:iron_nugget

@@ -1,0 +1,20 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "org.afv.advancementlock.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "AdvancementTrackerMixin",
+    "EquippableComponentMixin",
+    "PlayerInventoryMixin",
+    "PlayerScreenHandlerAccessor",
+    "ScreenHandlerMixin",
+    "ServerPlayNetworkHandlerMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "overwrites": {
+    "requireAnnotations": true
+  }
+}

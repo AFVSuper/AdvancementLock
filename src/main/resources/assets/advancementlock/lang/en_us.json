@@ -1,0 +1,8 @@
+{
+  "advancementlock.config.title": "AdvancementLock Settings",
+  "advancementlock.config.difficulty": "AdvancementLock Difficulty",
+
+  "advancementlock.config.difficulty.easy": "Easy",
+  "advancementlock.config.difficulty.normal": "Normal",
+  "advancementlock.config.difficulty.hard": "Hard"
+}

@@ -1,0 +1,33 @@
+GUIDE
+=====
+Fixed -> //
+Unreproducible -> ??
+Unknown Fix -> XX
+
+------------------------------
+
+FATAL
+===========
+// Crash due to division by zero when joining a server with the mod.
+// Crash when offhand swapping in GUIs.
+
+HIGH
+===========
+// Some GUIs are not rendering the locked slots properly (Crafting Table).
+// Items in GUIs go into locked slots if no space available.
+// Items in cursor are behind some locked slots in some GUIs (e.g. Chest).
+// When an item is held in cursor and unlocked inventory is full, the item disappears completely.
+// Any non hotbar scrolling is not working due to slot cycling override, instead the hotbar scrolls.
+// Health modifier is lost in player respawn.
+
+MEDIUM
+===========
+// Pressing F to swap item in inventory gets de-synced with in-game image.
+// Offhand slot is not rendered on hotbar.
+
+LOW
+===========
+?? There is a minor flicker when shift clicking to full unlocked inventory.
+// Picking up items gets the item into empty slot if found first, instead of searching for matching stacks at start.
+
+
