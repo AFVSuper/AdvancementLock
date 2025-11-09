@@ -18,8 +18,11 @@ public class AdvancementUtils {
 
     public static void onAdvancementGranted(ServerPlayerEntity player, AdvancementEntry advancement) {
         if (advancement.value().display().isPresent()) {
-            AdvancementNetworking.sendAdvancementCount(player);
-            HealthLimiter.onAdvancementGranted(player);
+            var tracker = player.getAdvancementTracker();
+            if (tracker.getProgress(advancement).isDone()) {
+                AdvancementNetworking.sendAdvancementCount(player);
+                HealthLimiter.onAdvancementGranted(player);
+            }
         }
     }
 }

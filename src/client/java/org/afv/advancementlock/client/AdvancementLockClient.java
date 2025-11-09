@@ -9,6 +9,7 @@ import net.fabricmc.fabric.impl.client.screen.ScreenExtensions;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.option.OptionsScreen;
+import net.minecraft.client.gui.screen.world.CreateWorldScreen;
 import net.minecraft.client.gui.tooltip.Tooltip;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.gui.widget.ClickableWidget;
@@ -65,9 +66,6 @@ public class AdvancementLockClient implements ClientModInitializer {
                 int buttonSize = 20;
                 int x = optionsScreen.width - buttonSize - 10;
                 int y = 10;
-
-//                int x = optionsScreen.width / 2 + 160; // adjust relative to Difficulty/Online
-//                int y = optionsScreen.height / 6 + 24;
 
                 if (configButton == null) {
                     // First time: create and add button

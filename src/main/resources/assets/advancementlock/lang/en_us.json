@@ -4,5 +4,7 @@
 
   "advancementlock.config.difficulty.easy": "Easy",
   "advancementlock.config.difficulty.normal": "Normal",
-  "advancementlock.config.difficulty.hard": "Hard"
+  "advancementlock.config.difficulty.hard": "Hard",
+
+  "advancementlock.world_gen.difficulty": "Lock Difficulty"
 }

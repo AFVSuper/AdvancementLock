@@ -13,7 +13,7 @@ import org.afv.advancementlock.limiters.AdvancementUtils;
 public class DebugCommand {
     public static void register(CommandDispatcher<ServerCommandSource> dispatcher) {
         dispatcher.register(
-                CommandManager.literal("mod-debug")
+                CommandManager.literal("adlock")
                         .requires(source -> source.hasPermissionLevel(2))
                         .then(CommandManager.literal("adcount")
                                 .executes(DebugCommand::getCount)));

@@ -9,6 +9,7 @@ import me.shedaniel.clothconfig2.api.ConfigEntryBuilder;
 import me.shedaniel.clothconfig2.gui.entries.EnumListEntry;
 import net.minecraft.text.Text;
 import org.afv.advancementlock.AdvancementLock;
+import org.afv.advancementlock.diff.LockDifficulty;
 
 @Config(name = AdvancementLock.ModID)
 public class ModConfig implements ConfigData {
@@ -29,7 +30,7 @@ public class ModConfig implements ConfigData {
                 .setSaveConsumer(val -> { this.difficulty = val; AutoConfig.getConfigHolder(ModConfig.class).save(); })
                 .build();
 
-        builder.getOrCreateCategory(Text.of("General")).addEntry(difficultyEntry);
+        builder.getOrCreateCategory(Text.of("General"));//.addEntry(difficultyEntry);
         return builder;
     }
 }

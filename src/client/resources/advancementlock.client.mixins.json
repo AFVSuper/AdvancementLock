@@ -4,12 +4,14 @@
   "package": "org.afv.advancementlock.client.mixin",
   "compatibilityLevel": "JAVA_21",
   "client": [
+    "CreateWorldScreenMixin",
     "HandledScreenMixin",
     "InGameHudMixin",
     "InventoryScreenMixin",
     "KeyboardMixin",
     "MouseMixin",
-    "OptionsMenuMixin"
+    "OptionsMenuMixin",
+    "ScreenAccessor"
   ],
   "injectors": {
     "defaultRequire": 1

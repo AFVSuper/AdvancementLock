@@ -3,17 +3,17 @@ package org.afv.advancementlock.limiters;
 import net.minecraft.advancement.AdvancementEntry;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
+import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import org.afv.advancementlock.AdvancementLock;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
-import java.util.UUID;
+import java.util.*;
 
 public class HealthLimiter {
     private static final Identifier HEALTH_MODIFIER = Identifier.of(AdvancementLock.ModID,"fca47f5d-b030-474a-880f-af682755c7e3");

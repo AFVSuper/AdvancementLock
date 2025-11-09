@@ -82,12 +82,14 @@ public abstract class PlayerInventoryMixin {
             }
 
             // No space available
+            // AdvancementLock.LOGGER.info("Has inv? : " + (player.currentScreenHandler != player.playerScreenHandler));
             if (!stack.isEmpty()) {
-                if (player instanceof ServerPlayerEntity serverPlayer) {
-                    serverPlayer.dropItem(stack.copy(), false); // drop at feet
-                    stack.setCount(0); // prevent duping
-                }
-                cir.setReturnValue(true); // mark as handled
+                cir.setReturnValue(false);
+//                if (player instanceof ServerPlayerEntity serverPlayer) {
+//                    serverPlayer.dropItem(stack.copy(), false); // drop at feet
+//                    stack.setCount(0); // prevent duping
+//                }
+//                cir.setReturnValue(true); // mark as handled
             }
         }
 

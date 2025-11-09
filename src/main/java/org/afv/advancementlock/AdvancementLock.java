@@ -6,6 +6,8 @@ import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerWorldEvents;
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
@@ -13,7 +15,10 @@ import net.minecraft.advancement.AdvancementEntry;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import org.afv.advancementlock.config.ModConfig;
+import org.afv.advancementlock.diff.LockDifficulty;
+import org.afv.advancementlock.diff.LockDifficultyState;
 import org.afv.advancementlock.init.ModCommands;
 import org.afv.advancementlock.limiters.AdvancementUtils;
 import org.afv.advancementlock.limiters.HealthLimiter;
@@ -39,7 +44,6 @@ public class AdvancementLock implements ModInitializer {
     public void onInitialize() {
         AutoConfig.register(ModConfig.class, GsonConfigSerializer::new);
         CONFIG = AutoConfig.getConfigHolder(ModConfig.class).getConfig();
-        applyDifficulty();
 
         ServerLifecycleEvents.SERVER_STARTED.register(this::advancementCounter);
 
@@ -77,18 +81,20 @@ public class AdvancementLock implements ModInitializer {
             int unlocked = AdvancementUtils.countUnlockedAdvancements(newPlayer);
             HealthLimiter.updatePlayerHealth(newPlayer, unlocked);
         });
+
+        ServerWorldEvents.LOAD.register((server, world) -> {
+            applyDifficulty(server);
+        });
     }
 
-    private void applyDifficulty() {
-        String diff = CONFIG.difficulty.getDisplayName();
-        switch (diff.toLowerCase()) {
-            case "easy" -> diffModifier = 2.0;
-            case "normal" -> diffModifier = 1.5;
-            case "hard" -> diffModifier = 1.0;
-            default -> {
-                System.err.println("Unknown difficulty in config: " + diff + ", defaulting to Normal");
-                diffModifier = 1.5;
-            }
+    public static void applyDifficulty(MinecraftServer server) {
+        LockDifficultyState state = LockDifficultyState.getServerState(server);
+        LockDifficulty difficulty = state.getDifficulty();
+
+        switch (difficulty) {
+            case HARD -> diffModifier = 1.0;
+            case NORMAL -> diffModifier = 1.5;
+            case EASY -> diffModifier = 2.0;
         }
     }
 
@@ -113,7 +119,9 @@ public class AdvancementLock implements ModInitializer {
         }
     }
 
-    public static double getDiffModifier() { return diffModifier; }
+    public static double getDiffModifier() {
+        return diffModifier;
+    }
     public static int getAdvancementTotal() { return AdvancementTotal; }
     public static void setServerAdvancementTotal(int total) { AdvancementTotal = total; }
 }
