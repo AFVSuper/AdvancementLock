@@ -14,7 +14,7 @@ public class DebugCommand {
     public static void register(CommandDispatcher<ServerCommandSource> dispatcher) {
         dispatcher.register(
                 CommandManager.literal("adlock")
-                        .requires(source -> source.hasPermissionLevel(2))
+                        .requires(CommandManager.requirePermissionLevel(CommandManager.GAMEMASTERS_CHECK))
                         .then(CommandManager.literal("adcount")
                                 .executes(DebugCommand::getCount)));
     }

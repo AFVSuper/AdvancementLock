@@ -62,22 +62,23 @@ public abstract class ScreenHandlerMixin {
 
     @Inject(method = "onSlotClick", at = @At("HEAD"), cancellable = true)
     private void onSlotClick(int slotIndex, int button, SlotActionType actionType, PlayerEntity player, CallbackInfo ci) {
-        AdvancementLock.LOGGER.debug("onSlotClick");
+        // AdvancementLock.LOGGER.info("onSlotClick");
         if (slotIndex >= 0 && slotIndex < this.slots.size()) {
             Slot slot = this.slots.get(slotIndex);
 
             // Check if this slot is locked
             if (!(player instanceof ServerPlayerEntity)) return;
-            AdvancementLock.LOGGER.debug("onSlotClick 2");
+            // AdvancementLock.LOGGER.info("onSlotClick 2");
             if (actionType == SlotActionType.SWAP) {
 
-                AdvancementLock.LOGGER.debug("onSlotClick SWAP, {}, {}", slot.getIndex(), button);
+                // AdvancementLock.LOGGER.info("onSlotClick SWAP, {}, {}", slot.getIndex(), button);
+                // AdvancementLock.LOGGER.info(" - {}, {}", SlotLimiter.isSlotLocked(slot, player), SlotLimiter.isSlotLocked(button, player));
                 if (SlotLimiter.isSlotLocked(slot, player) || SlotLimiter.isSlotLocked(button, player)) {
-                    AdvancementLock.LOGGER.debug("onSlotClick 3");
+                    AdvancementLock.LOGGER.info("onSlotClick 3");
                     ci.cancel();
                 }
             } else if (SlotLimiter.isSlotLocked(slot, player)) {
-                AdvancementLock.LOGGER.debug("onSlotClick 3");
+                // AdvancementLock.LOGGER.info("onSlotClick 4");
                 ci.cancel(); // cancel the swap
             }
         }

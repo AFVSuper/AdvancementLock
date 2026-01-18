@@ -51,8 +51,8 @@ public class HealthLimiter {
     public static void onAdvancementGranted(ServerPlayerEntity player) {
         int unlocked = AdvancementUtils.countUnlockedAdvancements(player);
         int total = AdvancementLock.getAdvancementTotal();
-        int newHearts = 3 + (12 * unlocked) / total;
-        int prev = 3 + (12 * (unlocked - 1)) / total;
+        int newHearts = (int) (3 + (AdvancementLock.getDiffModifier() * (12 * unlocked)) / total);
+        int prev = (int) (3 + (AdvancementLock.getDiffModifier() * (12 * (unlocked - 1))) / total);
         if (prev < 3) prev = 3;
 
         if (prev < newHearts) {

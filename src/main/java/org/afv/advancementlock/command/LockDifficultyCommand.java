@@ -26,7 +26,7 @@ public class LockDifficultyCommand {
     public static void register(CommandDispatcher<ServerCommandSource> dispatcher) {
         dispatcher.register(CommandManager.literal("lockdifficulty")
             .then(CommandManager.literal("get")
-                .requires(source -> source.hasPermissionLevel(2))
+                .requires(CommandManager.requirePermissionLevel(CommandManager.GAMEMASTERS_CHECK))
                 .executes(ctx -> {
                     ServerCommandSource source = ctx.getSource();
                     LockDifficultyState state = LockDifficultyState.getServerState(source.getServer());

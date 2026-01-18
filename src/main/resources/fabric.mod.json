@@ -3,9 +3,13 @@
   "id": "advancementlock",
   "version": "${version}",
   "name": "AdvancementLock",
-  "description": "",
-  "authors": [],
-  "contact": {},
+  "description": "A mod that limits you by needing to complete advancements!",
+  "authors": ["AFVSuper"],
+  "contributors": ["HoradelJuego"],
+  "contact": {
+    "sources": "https://github.com/AFVSuper/AdvancementLock",
+    "issues": "https://github.com/AFVSuper/AdvancementLock/issues"
+  },
   "license": "MIT",
   "icon": "assets/advancementlock/icon.png",
   "environment": "*",
@@ -36,5 +40,13 @@
     "minecraft": "${minecraft_version}",
     "cloth-config": ">=19.0.0",
     "modmenu": ">=11.0.0"
+  },
+  "custom": {
+    "modmenu": {
+      "links": {
+        "modmenu.patreon": "https://patreon.com/AFVSuper",
+        "modmenu.modrinth": "https://modrinth.com/mod/advancementlock"
+      }
+    }
   }
 }

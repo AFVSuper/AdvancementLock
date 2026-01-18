@@ -10,7 +10,6 @@
     "InventoryScreenMixin",
     "KeyboardMixin",
     "MouseMixin",
-    "OptionsMenuMixin",
     "ScreenAccessor"
   ],
   "injectors": {

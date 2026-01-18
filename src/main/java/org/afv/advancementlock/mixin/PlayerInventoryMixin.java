@@ -50,7 +50,8 @@ public abstract class PlayerInventoryMixin {
 
         if (slot == -1) {
             // Pass 1: merge with existing stacks
-            for (int i = 0; i < 36; i++) {
+            for (int i = 0; i < 37; i++) {
+                if (i == 36) i = 40;
                 if (!allowed.contains(i)) continue;
 
                 ItemStack invStack = this.getStack(i);

@@ -36,6 +36,8 @@ public class AdvancementLock implements ModInitializer {
     public static final Logger LOGGER = LoggerFactory.getLogger(ModID);
     private static int AdvancementTotal;
 
+    public static final boolean countNonAnnounced = false;
+
     public static ModConfig CONFIG;
 
     private static double diffModifier = 1.5;     // default for Normal
@@ -104,7 +106,8 @@ public class AdvancementLock implements ModInitializer {
         // Only keep ones with a display (i.e., shown in tabs)
         long visible = all.stream()
                 .map(AdvancementEntry::value)
-                .filter(adv -> adv.display().isPresent()) // must have display
+                .filter(adv -> adv.display().isPresent()
+                        && (countNonAnnounced || adv.display().get().shouldAnnounceToChat()))
                 .count();
 
         AdvancementTotal = (int) visible;

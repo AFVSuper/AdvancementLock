@@ -23,8 +23,8 @@ public class ServerPlayNetworkHandlerMixin {
 
     @Inject(method = "onPlayerAction", at = @At("HEAD"), cancellable = true)
     private void onSwap(PlayerActionC2SPacket packet, CallbackInfo ci) {
-        NetworkThreadUtils.forceMainThread(packet, (ServerPlayNetworkHandler) (Object) this, this.player.getWorld());
-        if (this.player.isLoaded()) {
+        NetworkThreadUtils.forceMainThread(packet, (ServerPlayNetworkHandler) (Object) this, this.player.getEntityWorld());
+        if (!player.isRemoved()) {
             PlayerActionC2SPacket.Action action = packet.getAction();
             if (Objects.requireNonNull(action) == PlayerActionC2SPacket.Action.SWAP_ITEM_WITH_OFFHAND) {
                 if (SlotLimiter.isSlotLocked(player.getInventory().getSelectedSlot(), player)) {

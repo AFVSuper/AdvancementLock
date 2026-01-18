@@ -23,6 +23,9 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
+import java.util.List;
+import java.util.function.Supplier;
+
 @Mixin(CreateWorldScreen.class)
 public abstract class CreateWorldScreenMixin {
     @Unique
@@ -44,10 +47,11 @@ public abstract class CreateWorldScreenMixin {
         int x = screen.width / 2 - width / 2;
         int y = screen.height / 6 + 120; // adjust vertical position
 
-        lockDiffButton = CyclingButtonWidget.<LockDifficulty>builder(
-                        value -> Text.translatable(value.getTranslationKey()))
+        lockDiffButton = CyclingButtonWidget.builder(
+                        (LockDifficulty value) -> Text.translatable(value.getTranslationKey()),
+                        (Supplier<LockDifficulty>) () -> selectedDifficulty
+                )
                 .values(LockDifficulty.values())
-                .initially(selectedDifficulty)
                 .build(
                         x, y, width, height,
                         Text.translatable("advancementlock.world_gen.difficulty"),

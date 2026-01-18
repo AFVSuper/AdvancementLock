@@ -16,7 +16,6 @@ import net.minecraft.client.gui.widget.ClickableWidget;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import org.afv.advancementlock.AdvancementLock;
-import org.afv.advancementlock.client.config.IconButton;
 import org.afv.advancementlock.client.config.ModMenuIntegration;
 import org.afv.advancementlock.config.ModConfig;
 import org.afv.advancementlock.network.AdvancementCountResponsePayload;
@@ -51,38 +50,6 @@ public class AdvancementLockClient implements ClientModInitializer {
                     AdvancementLock.setServerAdvancementTotal(total);
                 }
         );
-
-        ScreenEvents.AFTER_INIT.register((client, screen, scaledWidth, scaledHeight) -> {
-            if (screen instanceof OptionsScreen optionsScreen) {
-                IconButton configButton = null;
-                for (ClickableWidget btn : Screens.getButtons(screen)) {
-                    if (btn instanceof IconButton iconBtn && MOD_CONFIG_BUTTON_ID.equals(iconBtn.getId())) {
-                        configButton = iconBtn;
-                        break;
-                    }
-                }
-
-                // Position approximate (adjust accordingly)
-                int buttonSize = 20;
-                int x = optionsScreen.width - buttonSize - 10;
-                int y = 10;
-
-                if (configButton == null) {
-                    // First time: create and add button
-                    configButton = new IconButton(x, y, 20,
-                            CONFIG_ICON,
-                            b -> client.setScreen(new ModMenuIntegration().getModConfigScreenFactory().create(optionsScreen))
-                    );
-                    configButton.setId(MOD_CONFIG_BUTTON_ID);
-                    configButton.setTooltip(Tooltip.of(Text.literal("AdvancementLock Settings")));
-                    Screens.getButtons(screen).add(configButton);
-                } else {
-                    // Update position on resize
-                    configButton.setX(x);
-                    configButton.setY(y);
-                }
-            }
-        });
     }
 
     public AdvancementLockClient getInstance() { return this; }

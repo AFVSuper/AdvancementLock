@@ -62,15 +62,21 @@ public abstract class ScreenHandlerClientMixin {
 
         if (slotIndex < 0 || slotIndex >= this.slots.size()) return;
         Slot slot = this.slots.get(slotIndex);
+        AdvancementLock.LOGGER.info("Debug 1");
 
         if (actionType == SlotActionType.SWAP) {
+            AdvancementLock.LOGGER.info("Debug 2: {}", button);
             if (button >= this.slots.size()) return;
             Slot hotbarSlot = this.slots.get(button);
-            if (SlotClientUtils.isSlotLocked(slot) || SlotClientUtils.isSlotLocked(hotbarSlot)) {
+            AdvancementLock.LOGGER.info("Debug 3: {}", slotIndex);
+            if (SlotClientUtils.isSlotLocked(slot) || SlotClientUtils.isSlotLocked(button)) {
+                AdvancementLock.LOGGER.info("Debug 4");
+                player.currentScreenHandler.setCursorStack(player.currentScreenHandler.getCursorStack().copy());
+
                 ci.cancel();
 
                 // Revert cursor stack to what it was
-                player.currentScreenHandler.setCursorStack(player.currentScreenHandler.getCursorStack().copy());
+
             }
         } else if (SlotClientUtils.isSlotLocked(slot)) {
             ci.cancel();
